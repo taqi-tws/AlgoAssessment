@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace TGS.Challenge
 {
@@ -22,11 +23,30 @@ namespace TGS.Challenge
         There are accompanying unit tests for this exercise, ensure all tests pass & make
         sure the unit tests are correct too.
      */
-    public class FormatNumber
-    {
-        public string Format(int value)
+    
+        public class FormatNumber
         {
-            return string.Empty;
+            
+            private const int Min = 0;
+
+            private const int Max = 1000000000;
+
+            public string Format(int value)
+            {
+               
+                if (value < Min || value > Max)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+
+                var builder = new StringBuilder(value.ToString());
+
+                for (var i = builder.Length - 3; i > 0; i -= 3)
+                {
+                    builder.Insert(i, ",");
+                }
+
+                return builder.ToString();
+            }
         }
-    }
 }
