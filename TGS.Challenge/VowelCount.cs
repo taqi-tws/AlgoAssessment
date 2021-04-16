@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TGS.Challenge
 {
@@ -14,9 +16,12 @@ namespace TGS.Challenge
      */
     public class VowelCount
     {
-        public int Count(string value)
+        private static readonly HashSet<char> Vowels = new HashSet<char> { 'a', 'e', 'i', 'o', 'u' };
+        public int Count(string input)
         {
-            return -1;
+            if (string.IsNullOrEmpty(input))
+                throw new ArgumentException($"value cannot be empty or null");
+            return input.Count(c => Vowels.Contains(char.ToLower(c)));
         }
     }
 }
